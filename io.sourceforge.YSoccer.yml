@@ -11,6 +11,8 @@ finish-args:
   - --socket=x11
   - --socket=pulseaudio
   - --device=dri
+  - --env=PATH=/app/jre/bin:/app/bin:/usr/bin
+  - --env=JAVA_HOME=/app/jre
 
 modules:
   - name: openjdk
@@ -40,7 +42,7 @@ modules:
         dest-filename: ysoccer.sh
         commands:
           - cd /app/share/ysoccer
-          - /app/jre/bin/java -jar ysoccer.jar -Xmx1G
+          - exec java -jar ysoccer.jar -Xmx1G $@
       - type: file
         path: io.sourceforge.YSoccer.desktop
       - type: file
